@@ -1,0 +1,28 @@
+{
+  "tint_hue": null,
+  "tint_value_ceiling": 0.55,
+  "tint_value_floor": 0.015,
+  "themes": [
+    "Darkest",
+    "Dark",
+    "Middark",
+    "Medium"
+  ],
+  "guide_color": null,
+  "name": "Crimson",
+  "accent": "#F0475E",
+  "accent_soft": "#FFA8B4",
+  "ramp": [
+    "#0C0507",
+    "#14080C",
+    "#190A0F",
+    "#1F0D13",
+    "#251017",
+    "#331621",
+    "#4A1F2E",
+    "#7A5560",
+    "#FFA8B4",
+    "#FCEFF1"
+  ],
+  "tint_max_sat": 0.32
+}

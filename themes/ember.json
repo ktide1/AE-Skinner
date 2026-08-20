@@ -1,0 +1,28 @@
+{
+  "tint_hue": null,
+  "tint_value_ceiling": 0.55,
+  "tint_value_floor": 0.015,
+  "themes": [
+    "Darkest",
+    "Dark",
+    "Middark",
+    "Medium"
+  ],
+  "guide_color": null,
+  "name": "Ember",
+  "accent": "#FF7A2F",
+  "accent_soft": "#FFC49A",
+  "ramp": [
+    "#0C0705",
+    "#150D08",
+    "#1A100A",
+    "#20150E",
+    "#261911",
+    "#33231A",
+    "#4A3222",
+    "#7A6350",
+    "#FFC49A",
+    "#FBF2EC"
+  ],
+  "tint_max_sat": 0.32
+}

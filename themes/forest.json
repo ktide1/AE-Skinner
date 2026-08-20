@@ -1,0 +1,28 @@
+{
+  "tint_hue": null,
+  "tint_value_ceiling": 0.55,
+  "tint_value_floor": 0.015,
+  "themes": [
+    "Darkest",
+    "Dark",
+    "Middark",
+    "Medium"
+  ],
+  "guide_color": null,
+  "name": "Forest",
+  "accent": "#4CC38A",
+  "accent_soft": "#A7E8C6",
+  "ramp": [
+    "#050A07",
+    "#0A130D",
+    "#0D1811",
+    "#111E16",
+    "#15241A",
+    "#1E3325",
+    "#2A4A34",
+    "#5A7A66",
+    "#A7E8C6",
+    "#EEF9F3"
+  ],
+  "tint_max_sat": 0.3
+}

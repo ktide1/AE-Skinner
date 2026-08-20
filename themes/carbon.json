@@ -1,0 +1,28 @@
+{
+  "tint_hue": null,
+  "tint_value_ceiling": 0.55,
+  "tint_value_floor": 0.015,
+  "themes": [
+    "Darkest",
+    "Dark",
+    "Middark",
+    "Medium"
+  ],
+  "guide_color": null,
+  "name": "Carbon",
+  "accent": "#8A8F98",
+  "accent_soft": "#C9CDD4",
+  "ramp": [
+    "#050505",
+    "#0B0B0B",
+    "#101010",
+    "#151515",
+    "#1A1A1A",
+    "#242424",
+    "#333333",
+    "#666666",
+    "#C9CDD4",
+    "#F5F5F5"
+  ],
+  "tint_max_sat": 0.0
+}

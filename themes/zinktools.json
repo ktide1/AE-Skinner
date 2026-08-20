@@ -1,0 +1,28 @@
+{
+  "tint_hue": null,
+  "tint_value_ceiling": 0.55,
+  "tint_value_floor": 0.015,
+  "themes": [
+    "Darkest",
+    "Dark",
+    "Middark",
+    "Medium"
+  ],
+  "guide_color": null,
+  "name": "ZinkTools",
+  "accent": "#7C5CFC",
+  "accent_soft": "#C7A8FF",
+  "ramp": [
+    "#07050C",
+    "#0F0C18",
+    "#120A1C",
+    "#161320",
+    "#1A1028",
+    "#2A2140",
+    "#3B2460",
+    "#665C7A",
+    "#C7A8FF",
+    "#F2EEFA"
+  ],
+  "tint_max_sat": 0.4
+}

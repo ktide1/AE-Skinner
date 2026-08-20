@@ -1,0 +1,28 @@
+{
+  "tint_hue": null,
+  "tint_value_ceiling": 0.55,
+  "tint_value_floor": 0.015,
+  "themes": [
+    "Darkest",
+    "Dark",
+    "Middark",
+    "Medium"
+  ],
+  "guide_color": null,
+  "name": "Midnight Blue",
+  "accent": "#4C8DFF",
+  "accent_soft": "#A8C8FF",
+  "ramp": [
+    "#05070E",
+    "#0A0E1A",
+    "#0D1220",
+    "#111827",
+    "#151D2E",
+    "#1E2A40",
+    "#2A3B58",
+    "#5C6880",
+    "#A8C8FF",
+    "#EEF3FA"
+  ],
+  "tint_max_sat": 0.35
+}

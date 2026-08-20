@@ -1,0 +1,65 @@
+name: build
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pefile Pillow tkinterdnd2 pyinstaller
+
+      - name: Sanity check
+        run: python aeskin_cli.py doctor
+
+      - name: Build GUI
+        run: >
+          pyinstaller --noconfirm --clean --onefile --noconsole
+          --name "AE Skinner" --icon icon.ico --uac-admin
+          --collect-all tkinterdnd2 --add-data "themes;themes"
+          --hidden-import pefile --hidden-import PIL._tkinter_finder
+          AESkinner.pyw
+
+      - name: Build CLI
+        run: >
+          pyinstaller --noconfirm --clean --onefile --console
+          --name aeskin --icon icon.ico
+          --add-data "themes;themes" --hidden-import pefile
+          --exclude-module tkinterdnd2
+          aeskin_cli.py
+
+      - name: Verify the packaged build
+        run: |
+          disteskin.exe doctor
+          disteskin.exe themes
+
+      - name: Stage the release
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force "release/AE Skinner" | Out-Null
+          Copy-Item "dist/AE Skinner.exe","dist/aeskin.exe" "release/AE Skinner/"
+          Copy-Item README.md,LICENSE,NOTICE.md,THIRD-PARTY-NOTICES.md,TECHNICAL.md "release/AE Skinner/"
+          Copy-Item -Recurse themes "release/AE Skinner/themes"
+          Compress-Archive "release/AE Skinner" "AE-Skinner-win64.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AE-Skinner-win64
+          path: AE-Skinner-win64.zip
+
+      - name: Attach to the release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: AE-Skinner-win64.zip
