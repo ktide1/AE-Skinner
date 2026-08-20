@@ -54,7 +54,9 @@ jobs:
           New-Item -ItemType Directory -Force "release/AE Skinner" | Out-Null
           Copy-Item "dist/AE Skinner.exe","dist/aeskin.exe" "release/AE Skinner/"
           Copy-Item README.md,LICENSE,NOTICE.md,THIRD-PARTY-NOTICES.md,TECHNICAL.md "release/AE Skinner/"
+          Copy-Item "START HERE.txt" "release/AE Skinner/"
           Copy-Item -Recurse themes "release/AE Skinner/themes"
+          Copy-Item -Recurse docs "release/AE Skinner/docs"
           Compress-Archive "release/AE Skinner" "AE-Skinner-win64.zip"
 
       - uses: actions/upload-artifact@v4

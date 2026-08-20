@@ -1,0 +1,84 @@
+AE SKINNER 1.1.0
+================
+
+Reskin After Effects: the startup splash, the About window, the interface
+colours, and the render sounds. Works with every AE version on the machine.
+Windows only. Nothing to install, no Python needed.
+
+By ZinkTools. MIT licensed. Not affiliated with Adobe.
+
+
+HOW TO USE IT
+-------------
+
+1. CLOSE AFTER EFFECTS. The app refuses to run while it is open.
+
+2. Double-click  "AE Skinner.exe"
+
+   Windows asks for administrator permission - say yes. It needs that to write
+   into the Adobe program folder.
+
+   You may also see a blue "Windows protected your PC" box, because the app is
+   not code-signed. Click "More info" then "Run anyway".
+
+3. Pick your After Effects version at the top.
+
+4. Drag an image onto the "Splash screen" box. A live preview appears on the
+   right, and the "What will change" panel lists exactly what Apply will touch.
+
+5. Optional:
+     Caption    - text drawn over your image
+     Interface  - recolour the whole UI
+     Sounds     - replace the render-finished chime
+
+6. Press "Apply skin", then restart After Effects.
+
+
+IF YOU CHANGE YOUR MIND
+-----------------------
+
+Press "Restore..." and pick the oldest entry - that is the closest thing to a
+factory install. Every apply saves a backup first, so this always works.
+
+Backups:  %LOCALAPPDATA%\AESkinner\backups
+They live outside the Adobe folder on purpose, so a Creative Cloud update
+cannot delete them.
+
+
+ONE IMPORTANT LIMITATION
+------------------------
+
+Adobe removed interface theme colours in After Effects 2025. On AE 2025, 2026
+and the Betas the panels STAY GREY no matter what - that is Adobe, not this
+app. The install picker labels those versions "no theme".
+
+The splash screen, the About window and the sounds still work on every version.
+
+For a fully recoloured interface you need AE 2024 or older.
+
+
+IS THIS SAFE?
+-------------
+
+It refuses to write to any binary that does not identify itself as Adobe
+software. It backs everything up before touching it, reads the result back and
+compares it byte for byte, and rolls the backup back automatically if anything
+fails to verify. Restore re-hashes every file and re-checks every destination
+before writing.
+
+It contains no Adobe code and does not touch licensing or activation in any
+way. The changes are cosmetic. See NOTICE.md.
+
+
+ALSO
+----
+
+- A Creative Cloud update will undo your skin. Just run AE Skinner again.
+- The "themes" folder holds the colour presets. Edit them or drop in your own
+  .json - they appear in the app automatically.
+- "aeskin.exe" is the same tool for the command line. Start with
+  "aeskin.exe list" and "aeskin.exe inspect 2024".
+- TECHNICAL.md explains how it works and what differs between AE versions.
+
+Full documentation: README.md
+Licence: MIT (LICENSE). Third-party components: THIRD-PARTY-NOTICES.md
