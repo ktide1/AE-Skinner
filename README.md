@@ -1,13 +1,25 @@
 # AE Skinner
 
-Reskin **any** After Effects install on **any** machine. Drop in an image, pick
-colours, hit Apply. Everything it touches is backed up first and can be put back
-with one click.
+**Customize the After Effects splash screen, About window, UI theme colors and
+render sounds** — on any installed version, without hunting for the right DLL
+or hand-editing theme XML.
+
+Drop in an image, pick colours, hit Apply. Everything it touches is backed up
+first and can be put back with one click. Free, MIT licensed, Windows.
+
+> ### Changed the UI theme colour and nothing happened?
+> If your panels stay grey (gray) no matter what you set, you are almost
+> certainly on **After Effects 2025 or newer, where Adobe removed UI theme
+> colouring entirely**. It is not a setting you missed.
+> **[Here is the evidence, tested across six versions →](docs/after-effects-2025-ui-theme-colors.md)**
+>
+> Splash, About and sounds still work on every version, 2026 included.
 
 Nothing is hardcoded: AE Skinner finds your installs, reads the artwork sizes,
-resource languages and colour-ramp lengths out of the binaries themselves, and
-adapts to what it finds. It works the same on a stock install and on one that
-has already been skinned. See [TECHNICAL.md](TECHNICAL.md) for what that took.
+resource languages and colour-ramp lengths out of `AfterFXLib.dll` and
+`dvaui.dll` themselves, and adapts to what it finds. It works the same on a
+stock install and on one that has already been skinned. See
+[TECHNICAL.md](TECHNICAL.md) for what that took.
 
 ![Artwork page](docs/screenshot-artwork.png)
 
@@ -188,6 +200,73 @@ aeskin apply 2024 --theme mytheme.json
 
 Drop a `.json` into the `themes/` folder next to the app and it appears in the
 preset list. Files there override the ones baked into the build.
+
+---
+
+## FAQ
+
+### How do I change the After Effects splash screen?
+
+Drop an image on the Splash screen box and press Apply. AE Skinner finds every
+splash slot the install has — there are usually six, at three different
+resolutions, and the pixel sizes differ between versions — and regenerates each
+at its exact size, reusing the original's alpha so the rounded corners survive.
+Works on every version including 2025 and 2026.
+
+### How do I change the After Effects UI color (colour) to purple, blue or black?
+
+Turn on **Recolour the interface** on the Interface page, pick a preset or set
+your own accent and ramp, then Apply. **This only works on AE 2024 and older** —
+see the next question.
+
+### Why does the After Effects theme colour not work in 2025 / 2026?
+
+Adobe removed it. The colour resources are still inside `AfterFXLib.dll`, they
+still patch, and the app ignores their hue. `Enable_Theme_Colorizing` in
+`Debug Database.txt` no longer does anything either.
+[Full evidence, tested on 2020, 2024 and four 2025+ Betas](docs/after-effects-2025-ui-theme-colors.md).
+
+### I edited the theme XML by hand and nothing changed. Why?
+
+Because stock After Effects stores its greys as a brightness value with **no
+hue field at all** — `v="&kColor_Gray_Darkest_01;"` and nothing else. There is
+nowhere to put a colour. The entity has to be replaced with an explicit
+`h`/`s`/`v` triple. [Explained here](docs/after-effects-2025-ui-theme-colors.md).
+
+### Is this safe? Will it break my install?
+
+It refuses to write to any binary that does not identify itself as Adobe
+software, backs up before touching anything, reads every written resource back
+and compares it byte for byte, and rolls the backup back automatically if
+verification fails. See [Safety](#safety) for the full list.
+
+### How do I undo it / restore the original After Effects?
+
+Press **Restore…** and pick the oldest snapshot, or run `aeskin restore 2024`.
+Backups live in `%LOCALAPPDATA%\AESkinner\backups`, deliberately outside the
+Adobe folder so a Creative Cloud update cannot delete them.
+
+### Will a Creative Cloud update undo my changes?
+
+Yes. Updates replace the binaries. Your backups survive; just run AE Skinner
+again afterwards.
+
+### Does this crack, pirate or bypass Adobe licensing?
+
+No, and it never will. It touches nothing related to licensing, activation or
+DRM — the changes are cosmetic, and it contains no Adobe code. See
+[NOTICE.md](NOTICE.md).
+
+### Which versions are supported?
+
+Every Windows install it can find. Tested on After Effects 2020 (17.0), 2024
+(24.5) and Betas 25.6, 26.2, 26.3 and 26.5. Nothing is version-specific — it
+reads what it needs out of each install.
+
+### Does it work on macOS?
+
+Not yet. The resource format is Windows PE specific; the macOS equivalent lives
+in `.rsrc` and bundle resources and would need a separate backend.
 
 ---
 
