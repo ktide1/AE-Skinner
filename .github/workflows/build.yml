@@ -8,6 +8,10 @@ on:
 jobs:
   windows:
     runs-on: windows-latest
+    # New repositories give the workflow token read-only access, so creating a
+    # release fails with "Resource not accessible by integration" without this.
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
